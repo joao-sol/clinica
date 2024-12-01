@@ -1,4 +1,4 @@
-export default class Patient{
+export default class User{
     private name!: string;
     private gender!: string;
     private age!: string;
