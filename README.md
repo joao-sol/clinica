@@ -1,0 +1,1 @@
+Este é um projeto da matéria de programação orientada a objetos do curso de sistemas para a internet da UTFPR. O sistema tem por objetivo o cadastramento de pacientes, médicos e agendamento de consultas/exames
