@@ -16,12 +16,13 @@ export default class Agenda extends Scheduling{
         this.date = date;
     }
 
+
     constructor(doctor: Doctor, patient: Patient, date: Date) {
         super(doctor, patient)
         this.date = this.date;
     }
     postpone(): void {
-        `O paciente: ${this.patient.getName()}, tem uma consulta com o médico ${this.doctor.getName()} na data ${this.date}`
+        //`O paciente: ${this.patient.getName()}, tem uma consulta com o médico ${this.doctor.getName()} na data ${this.date}`
         
     }
 

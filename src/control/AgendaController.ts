@@ -5,14 +5,16 @@ import Patient from "../model/Patient";
 
 export default class AgendaController {
     private db!: Database;
-    private 
+    private doctor!: Doctor;
+    private patient!: Patient;
+    private date!: Date;
 
     constructor(db: Database) {
         this.db = db;
     }
 
     getNewAgenda(): Agenda {
-        return new Agenda();
+        return new Agenda(this.doctor, this.patient, this.date);
     }
 
     public registerNewAgenda(agenda: Agenda): void {
