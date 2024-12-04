@@ -1,3 +1,5 @@
+import UserException from "../exception/UserException";
+
 export default class User{
     private name!: string;
     private gender!: string;
@@ -7,6 +9,9 @@ export default class User{
         return this.name;
     }
     public setName(name: string): void {
+        if (name.length < 3){
+            throw new UserException()
+        }
         this.name = name;
     }
     

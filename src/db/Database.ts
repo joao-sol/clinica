@@ -1,10 +1,12 @@
 import Patient from "../model/Patient";
 import Doctor from "../model/Doctor";
+import Agenda from "../model/Agenda";
 
 export default class Database{
 
     private patients: Patient[] = [];
     private doctors: Doctor[] = [];
+    private agenda: Agenda[] =[];
 
     public addNewPatient(patient: Patient): void{
         this.patients.push(patient);
@@ -14,6 +16,11 @@ export default class Database{
     public addNewDoctor(doctor: Doctor): void{
         this.doctors.push(doctor);
         console.log(this.doctors);
+    }
+
+    public addNewAgenda(agenda: Agenda): void{
+        this.agenda.push(agenda)
+        console.log(this.agenda);
     }
 
 

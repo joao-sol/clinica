@@ -20,7 +20,6 @@ export default class DoctorScreen {
             // nome
             let doctorName = this.prompt("Digite o nome do médico ");
             doctor.setName(doctorName);
-            
             //peço o gênero
             let doctorGender = this.prompt("Digite o gênero do médico ");
             doctor.setGender(doctorGender);

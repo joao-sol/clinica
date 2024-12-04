@@ -1,5 +1,4 @@
 import Database from "../db/Database";
-import Patient from "../model/Patient";
 import Doctor from "../model/Doctor";
 
 export default class DoctorController {

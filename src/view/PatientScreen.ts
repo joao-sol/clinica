@@ -37,6 +37,5 @@ export default class PatientScreen {
             patient.setAllergy(patientAllergy);
             // chama o PatientController para gravar no banco
             this.router.patientController.registerNewPatient(patient);
-            
     }
 }
