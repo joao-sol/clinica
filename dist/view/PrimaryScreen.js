@@ -6,12 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
 const PatientScreen_1 = __importDefault(require("./PatientScreen"));
 const DoctorScreen_1 = __importDefault(require("./DoctorScreen"));
+const AgendaScreen_1 = __importDefault(require("./AgendaScreen"));
 class PrimaryScreen {
     constructor(router) {
         this.prompt = (0, prompt_sync_1.default)();
         this.router = router;
         this.patientScreen = new PatientScreen_1.default(this.router);
         this.doctorScreen = new DoctorScreen_1.default(this.router);
+        this.agendaScreen = new AgendaScreen_1.default(this.router);
     }
     getFirstScreen() {
         let showScreen = true;
@@ -19,7 +21,7 @@ class PrimaryScreen {
             let choice = this.prompt("Escolha:\n1 - Cadastrar \n2 - Listar\n3 - Atualizar\n4 - Apagar\n5 - Sair ");
             switch (choice) {
                 case "1":
-                    let choice2 = this.prompt("Escolha:\n1 - Cadastrar Paciente \n2 Cadastrar Médico");
+                    let choice2 = this.prompt("Escolha:\n1 - Cadastrar Paciente \n2 Cadastrar Médico \n3 Cadastrar Consulta");
                     switch (choice2) {
                         case "1":
                             // Chamada da tela de cadastro de paciente
@@ -28,6 +30,10 @@ class PrimaryScreen {
                         case "2":
                             // Chamada da tela de cadastro de médicos
                             this.doctorScreen.registerDoctor();
+                            break;
+                        case "3":
+                            //Chamada da tela de cadastro de consultas
+                            this.agendaScreen.registerAgenda();
                     }
                     break;
                 case "2":

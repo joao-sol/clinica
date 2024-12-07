@@ -9,6 +9,7 @@ class Database {
     constructor() {
         this.patients = [];
         this.doctors = [];
+        this.agenda = [];
     }
     addNewPatient(patient) {
         this.patients.push(patient);
@@ -17,6 +18,10 @@ class Database {
     addNewDoctor(doctor) {
         this.doctors.push(doctor);
         console.log(this.doctors);
+    }
+    addNewAgenda(agenda) {
+        this.agenda.push(agenda);
+        console.log(this.agenda);
     }
     getPatientByIndex(index) {
         return this.patients[index];

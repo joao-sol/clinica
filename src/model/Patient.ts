@@ -1,8 +1,10 @@
 import User from "./User"
+import Database from "../db/Database";
 
 export default class Patient extends User{
     private agreement!: string;
     private allergy!: string;
+    static findByName: any;
 
     public getAgreement(): string {
         return this.agreement;
@@ -16,5 +18,9 @@ export default class Patient extends User{
     }
     public setAllergy(allergy: string): void {
         this.allergy = allergy;
+    }
+
+    public findByNamePatient(patientName: string): void {
+
     }
 }

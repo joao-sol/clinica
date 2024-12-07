@@ -1,7 +1,8 @@
 import PromptSync from "prompt-sync";
 import Router from "../control/Router";
 import Agenda from "../model/Agenda";
-import Patient from "../model/Patient";
+
+
 
 export default class AgendaScreen {
 
@@ -15,8 +16,15 @@ export default class AgendaScreen {
     public registerAgenda(): void {
 
         let agenda: Agenda = this.router.agendaController.getNewAgenda();
+        
+        let patientName = this.prompt("Digite o nome do paciente: ");
+        agenda.patient.findByNamePatient(patientName);
 
-        let patientName = this.prompt("Digite a id do paciente ");
-        agenda.getName(patientName)
+        let doctorName = this.prompt("Digite o nome do Médico: ");
+        agenda.doctor.findByNameDoctor(doctorName);
+
+        let dateInput = this.prompt("Digite a data da consulta: ");
+        let date = new Date(dateInput);
+        agenda.setDate(date);
     }
 }

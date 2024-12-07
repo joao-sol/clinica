@@ -6,9 +6,15 @@ import Patient from "./Patient";
 
 export default abstract class Scheduling {
 
-    constructor(doctor: Doctor, patient: Patient) {
+    date!: Date;
+    
+    constructor(doctor: Doctor, patient: Patient, date: Date) {
     }
 
-    abstract postpone(): void;
+    abstract postpone(
+        patientName: String,
+        doctorName: String,
+        date: Date
+    ): void;
 }
 

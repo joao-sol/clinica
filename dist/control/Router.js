@@ -8,6 +8,7 @@ const PrimaryScreen_1 = __importDefault(require("../view/PrimaryScreen"));
 const PatientController_1 = __importDefault(require("./PatientController"));
 const DoctorController_1 = __importDefault(require("./DoctorController"));
 const UserException_1 = __importDefault(require("../exception/UserException"));
+const AgendaController_1 = __importDefault(require("./AgendaController"));
 class Router {
     constructor() {
         this.db = new Database_1.default();
@@ -15,6 +16,7 @@ class Router {
         this.patientController = new PatientController_1.default(this.db);
         this.doctorController = new DoctorController_1.default(this.db);
         this.doctorException = new UserException_1.default();
+        this.agendaController = new AgendaController_1.default(this.db);
         this.ps.getFirstScreen();
     }
 }

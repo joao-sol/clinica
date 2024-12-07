@@ -1,7 +1,7 @@
 import UserException from "../exception/UserException";
 
 export default class User{
-    private name!: string;
+    public name!: string;
     private gender!: string;
     private age!: string;
 

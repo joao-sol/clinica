@@ -1,6 +1,7 @@
 import Patient from "../model/Patient";
 import Doctor from "../model/Doctor";
 import Agenda from "../model/Agenda";
+import User from "../model/User";
 
 export default class Database{
 
@@ -13,9 +14,17 @@ export default class Database{
         console.log(this.patients);
     }
 
+    findByNamePatient(name: string): Patient | undefined{
+        return this.patients.find(patient => patient.name === name);
+    }
+
     public addNewDoctor(doctor: Doctor): void{
         this.doctors.push(doctor);
         console.log(this.doctors);
+    }
+
+    findByNameDoctor(name: string): Doctor | undefined{
+        return this.doctors.find(doctor => doctor.name === name);
     }
 
     public addNewAgenda(agenda: Agenda): void{

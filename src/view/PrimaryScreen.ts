@@ -2,17 +2,20 @@ import promptSync from "prompt-sync";
 import PatientScreen from "./PatientScreen";
 import Router from "../control/Router";
 import DoctorScreen from "./DoctorScreen";
+import AgendaScreen from "./AgendaScreen";
 
 export default class PrimaryScreen {
     private prompt = promptSync();
     private patientScreen!: PatientScreen;
     private router!: Router;
     private doctorScreen!: DoctorScreen;
+    private agendaScreen!: AgendaScreen;
 
     constructor(router: Router) {
         this.router = router;
         this.patientScreen = new PatientScreen(this.router);
         this.doctorScreen = new DoctorScreen(this.router);
+        this.agendaScreen = new AgendaScreen(this.router);
     }
 
     public getFirstScreen(): void {
@@ -25,7 +28,7 @@ export default class PrimaryScreen {
 
             switch (choice) {
                 case "1":
-                    let choice2 = this.prompt("Escolha:\n1 - Cadastrar Paciente \n2 Cadastrar Médico")
+                    let choice2 = this.prompt("Escolha:\n1 - Cadastrar Paciente \n2 Cadastrar Médico \n3 Cadastrar Consulta")
                     switch (choice2) {
                         case "1":
                           // Chamada da tela de cadastro de paciente
@@ -35,7 +38,11 @@ export default class PrimaryScreen {
                         case "2":
                             // Chamada da tela de cadastro de médicos
                             this.doctorScreen.registerDoctor();
-
+                          break;
+                        
+                        case "3":
+                            //Chamada da tela de cadastro de consultas
+                            this.agendaScreen.registerAgenda();
                     }
 
                     break;
