@@ -17,5 +17,7 @@ class Patient extends User_1.default {
     setAllergy(allergy) {
         this.allergy = allergy;
     }
+    findByNamePatient(patientName) {
+    }
 }
 exports.default = Patient;

@@ -11,5 +11,7 @@ class Doctor extends User_1.default {
     setSpecialty(specialty) {
         this.specialty = specialty;
     }
+    findByNameDoctor(doctorName) {
+    }
 }
 exports.default = Doctor;

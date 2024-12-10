@@ -9,10 +9,10 @@ export default class User{
         return this.name;
     }
     public setName(name: string): void {
-        if (name.length < 3){
-            throw new UserException()
-        }
-        this.name = name;
+        if ( !name || name.length < 3) {
+          throw new UserException  
+        } else {
+        this.name = name; }
     }
     
     public getGender(): string {

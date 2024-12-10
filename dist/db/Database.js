@@ -15,9 +15,15 @@ class Database {
         this.patients.push(patient);
         console.log(this.patients);
     }
+    findByNamePatient(name) {
+        return this.patients.find(patient => patient.name === name);
+    }
     addNewDoctor(doctor) {
         this.doctors.push(doctor);
         console.log(this.doctors);
+    }
+    findByNameDoctor(name) {
+        return this.doctors.find(doctor => doctor.name === name);
     }
     addNewAgenda(agenda) {
         this.agenda.push(agenda);

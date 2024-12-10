@@ -12,9 +12,9 @@ class AgendaScreen {
     registerAgenda() {
         let agenda = this.router.agendaController.getNewAgenda();
         let patientName = this.prompt("Digite o nome do paciente: ");
-        agenda.patient.findByName(patientName);
+        agenda.patient.findByNamePatient(patientName);
         let doctorName = this.prompt("Digite o nome do Médico: ");
-        agenda.doctor.findByName(doctorName);
+        agenda.doctor.findByNameDoctor(doctorName);
         let dateInput = this.prompt("Digite a data da consulta: ");
         let date = new Date(dateInput);
         agenda.setDate(date);

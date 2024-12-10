@@ -5,10 +5,8 @@ class UserException extends Error {
         super(message);
         this.name = "InvalidNameError";
     }
-    static validate(name) {
-        if (!name || name.length < 3) {
-            throw new UserException();
-        }
+    static validate() {
+        throw new UserException("Nome precisa ter no mínimo 3 caracteres!");
     }
 }
 exports.default = UserException;

@@ -9,10 +9,12 @@ class User {
         return this.name;
     }
     setName(name) {
-        if (name.length < 3) {
-            throw new UserException_1.default();
+        if (!name || name.length < 3) {
+            throw new UserException_1.default;
         }
-        this.name = name;
+        else {
+            this.name = name;
+        }
     }
     getGender() {
         return this.gender;
