@@ -10,7 +10,7 @@ class Doctor extends User_1.default {
         Doctor.counter++;
         this.id = Doctor.gerarId();
     }
-    //Fazer sobrescrita de método com classe User.ts
+    //Fazer sobrecarga de método com classe User.ts
     static gerarId() {
         return `DR-${String(this.counter)}`;
     }
@@ -22,6 +22,15 @@ class Doctor extends User_1.default {
     }
     getId() {
         return this.id;
+    }
+    //sobrescrita de método
+    getProfileInfo() {
+        return `
+        ID: ${this.id}
+        Paciente: ${this.name}
+        Idade: ${this.age}
+        CPF: ${this.cpf}
+        Especialidade: ${this.specialty}`;
     }
 }
 Doctor.counter = 0;

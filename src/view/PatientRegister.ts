@@ -20,21 +20,19 @@ export default class PatientRegister {
         let cpf: string = this.prompt("\nDigite o CPF do paciente");
         let bloodType: string = this.prompt("\nDigite o tipo sanguíneo do paciente");
         let agreement: string = this.prompt("\nDigite o convênio do paciente (se houver)");
+        let list: string;
 
         patient.setName(name);
         patient.setAge(age);
         patient.setCpf(cpf);
         patient.setBloodType(bloodType);
         patient.setAgreement(agreement);
+        patient.getProfileInfo();
 
         this.control.db.patientDb.push(patient);
 
         console.log("Dados do paciente cadastrado: \n--------------------------------------")
-        console.log("ID: "+patient.getId());
-        console.log("Idade: "+age);
-        console.log("CPF: "+cpf);
-        console.log("Tipo sanguíneo: "+bloodType);
-        console.log("Convênio: "+agreement);
+        console.log(patient.getProfileInfo());
         console.log("--------------------------------------")
 
         
@@ -44,19 +42,13 @@ export default class PatientRegister {
         const patient = this.control.db.patientDb;
       
         if (patient.length === 0) {
-          console.log("\nNenhum médico cadastrado.");
+          console.log("\nNenhum paciente cadastrado.");
           return;
         }
       
-        console.log("\n📋 Lista de pacientes cadastrados:\n");
-        patient.forEach((doc, index) => {
-          console.log(`Paciente ${index + 1}`);
-          console.log(`ID: ${doc.getId()}`);
-          console.log(`Nome: ${doc.getName()}`);
-          console.log(`Idade: ${doc.getAge()}`);
-          console.log(`CPF: ${doc.getCpf()}`);
-          console.log(`Tipo sanguíneo: ${doc.getBloodType()}`);
-          console.log(`Convênio: ${doc.getAgreement()}`);
+        console.log("\nLista de pacientes cadastrados:\n");
+        patient.forEach((pat, index) => {
+          console.log(pat.getProfileInfo())
           console.log("-------------------------");
         });
       }

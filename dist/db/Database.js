@@ -18,12 +18,13 @@ class Database {
     }
     listAllSchedulings() {
         let s = "";
-        for (let i = 0; i < this.scheduling.length; i++) {
+        for (let i = 1; i < this.scheduling.length; i++) {
             const element = this.scheduling[i];
-            s += "\n" + element.getPatient().getName();
-            s += "\n" + element.getPatient().getAgreement();
-            s += "\n" + element.getDoctor().getName();
-            s += "\n" + element.getDoctor().getSpecialty();
+            s += "\nID: " + i;
+            s += "\nPaciente: " + element.getPatient().getName();
+            s += "\nConvênio: " + element.getPatient().getAgreement();
+            s += "\nMédico: " + element.getDoctor().getName();
+            s += "\nEspecialidade: " + element.getDoctor().getSpecialty();
         }
         return s;
     }

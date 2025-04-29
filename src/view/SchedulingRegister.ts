@@ -1,6 +1,8 @@
 import Scheduling from "../model/Scheduling";
 import PromptSync from "prompt-sync";
 import MainController from "../controller/MainController";
+import Patient from "../model/Patient";
+import Doctor from "../model/Doctor";
 
 export default class SchedulingRegister {
 
@@ -14,11 +16,20 @@ export default class SchedulingRegister {
     public addScheduling() {
         let scheduling: Scheduling = this.control.getNewScheduling();
 
-        let patient: String = this.prompt("\nDigite a id do paciente\n");
-        let doctor: String = this.prompt("\nDigite a id do médico\n");
+        //buscar em db tanto paciente quanto médico que não são strings, mas doctor e patient
+        //precisa passar os objetos
+        let patientId: string = this.prompt("\nDigite a id do paciente\n");
+        let doctorId: string = this.prompt("\nDigite a id do médico\n");
 
-        this.control.db.scheduling.push(scheduling);
+        const patient = this.control.db.patientDb.find(p => p.getId() === patientId);
+        const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
 
+        //this.control.db.scheduling.push(scheduling);
+
+        scheduling.doSchedule(patient!, doctor!);
+
+        this.control.db.addNewScheduling(scheduling);
+        console.log("✅ Agendamento realizado com sucesso!");
 
     }
 

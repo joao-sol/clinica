@@ -27,11 +27,7 @@ export default class DoctorRegister {
         doctor.setSpecialty(specialty);
 
         console.log("Dados do médico cadastrado: \n--------------------------------------")
-        console.log("ID: " +doctor.getId());
-        console.log("Nome: "+name);
-        console.log("Idade: "+age);
-        console.log("CPF: "+cpf);
-        console.log("Especialidade: "+specialty);
+        console.log(doctor.getProfileInfo());
         console.log("--------------------------------------");
 
         this.control.db.doctorDb.push(doctor);
@@ -45,14 +41,10 @@ export default class DoctorRegister {
           return;
         }
       
-        console.log("\n📋 Lista de Médicos Cadastrados:\n");
+        console.log("\nLista de Médicos Cadastrados:\n");
         doctors.forEach((doc, index) => {
           console.log(`Médico ${index + 1}`);
-          console.log(`ID: ${doc.getId()}`);
-          console.log(`Nome: ${doc.getName()}`);
-          console.log(`Idade: ${doc.getAge()}`);
-          console.log(`CPF: ${doc.getCpf()}`);
-          console.log(`Especialidade: ${doc.getSpecialty()}`);
+          console.log(doc.getProfileInfo());
           console.log("-------------------------");
         });
       }

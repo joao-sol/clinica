@@ -14,7 +14,7 @@ export default class Doctor extends User {
     }
 
 
-    //Fazer sobrescrita de método com classe User.ts
+    //Fazer sobrecarga de método com classe User.ts
     private static gerarId(): string {
         return `DR-${String(this.counter)}`;
     }
@@ -30,9 +30,14 @@ export default class Doctor extends User {
         return this.id;
     }
 
-    /*
-    public setId(id: number): void {
-        this.id = id;
-    }*/
+    //sobrescrita de método
+    public override getProfileInfo(): string {
+        return `
+        ID: ${this.id}
+        Paciente: ${this.name}
+        Idade: ${this.age}
+        CPF: ${this.cpf}
+        Especialidade: ${this.specialty}`
+    }
 }
 

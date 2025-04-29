@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
-const Database_1 = __importDefault(require("../db/Database"));
 const PatientRegister_1 = __importDefault(require("./PatientRegister"));
 const DoctorRegister_1 = __importDefault(require("./DoctorRegister"));
 const SchedulingRegister_1 = __importDefault(require("./SchedulingRegister"));
@@ -14,7 +13,7 @@ class MainScreen {
         this.control = control;
         this.patientRegister = new PatientRegister_1.default(control);
         this.doctorRegister = new DoctorRegister_1.default(control);
-        this.database = new Database_1.default;
+        this.database = this.control.db;
         this.schedulingRegister = new SchedulingRegister_1.default(control);
         this.mainMenu();
     }
@@ -39,7 +38,7 @@ class MainScreen {
                     this.doctorRegister.listDoctors();
                     break;
                 case 6:
-                    this.database.listAllSchedulings();
+                    console.log(this.database.listAllSchedulings());
                     break;
                 case 7:
                     continues = false;

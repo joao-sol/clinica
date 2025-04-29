@@ -21,5 +21,10 @@ class User {
     setCpf(cpf) {
         this.cpf = cpf;
     }
+    getProfileInfo() {
+        return `Nome: ${this.name}\n
+        Idade: ${this.age}\n
+        CPF: ${this.cpf}\n`;
+    }
 }
 exports.default = User;

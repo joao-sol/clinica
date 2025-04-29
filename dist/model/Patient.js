@@ -35,6 +35,15 @@ class Patient extends User_1.default {
     setAgreement(agreement) {
         this.agreement = agreement;
     }
+    //sobrescrita de método
+    getProfileInfo() {
+        return `ID: ${this.id}\n 
+        Paciente: ${this.name}\n
+        Idade: ${this.age}\n
+        CPF: ${this.cpf}\n
+        Tipo sanguíneo: ${this.bloodType}\n
+        Convênio: ${this.agreement}\n`;
+    }
 }
 Patient.counter = 0;
 exports.default = Patient;

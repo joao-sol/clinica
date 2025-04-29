@@ -18,7 +18,7 @@ export default class MainScreen{
         this.control = control;
         this.patientRegister = new PatientRegister(control);
         this.doctorRegister = new DoctorRegister(control);
-        this.database = new Database;
+        this.database = this.control.db;
         this.schedulingRegister = new SchedulingRegister(control);
         this.mainMenu();
     }
@@ -45,7 +45,7 @@ export default class MainScreen{
                 this.doctorRegister.listDoctors();
                 break;
             case 6:
-                this.database.listAllSchedulings();
+                console.log(this.database.listAllSchedulings());
                 break;
             case 7:
                 continues = false;

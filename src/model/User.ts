@@ -1,8 +1,8 @@
 export default class User {
     
-    private name!: string;
-    private age!: number;
-    private cpf!: string;
+    protected name!: string;
+    protected age!: number;
+    protected cpf!: string;
 
 
     constructor() {
@@ -33,5 +33,11 @@ export default class User {
         this.cpf = cpf;
     }
 
+    public getProfileInfo(): string {
+        return `Nome: ${this.name}\n
+        Idade: ${this.age}\n
+        CPF: ${this.cpf}\n`
     }
+
+}
 

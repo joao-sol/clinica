@@ -47,4 +47,14 @@ export default class Patient extends User {
     public setAgreement(agreement: string): void {
         this.agreement = agreement;
     }
+
+    //sobrescrita de método
+    public override getProfileInfo(): string {
+        return `ID: ${this.id}\n 
+        Paciente: ${this.name}\n
+        Idade: ${this.age}\n
+        CPF: ${this.cpf}\n
+        Tipo sanguíneo: ${this.bloodType}\n
+        Convênio: ${this.agreement}\n`
+    }
 }

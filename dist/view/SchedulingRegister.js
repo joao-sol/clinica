@@ -11,9 +11,16 @@ class SchedulingRegister {
     }
     addScheduling() {
         let scheduling = this.control.getNewScheduling();
-        let patient = this.prompt("\nDigite a id do paciente\n");
-        let doctor = this.prompt("\nDigite a id do médico\n");
-        this.control.db.scheduling.push(scheduling);
+        //buscar em db tanto paciente quanto médico que não são strings, mas doctor e patient
+        //precisa passar os objetos
+        let patientId = this.prompt("\nDigite a id do paciente\n");
+        let doctorId = this.prompt("\nDigite a id do médico\n");
+        const patient = this.control.db.patientDb.find(p => p.getId() === patientId);
+        const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
+        //this.control.db.scheduling.push(scheduling);
+        scheduling.doSchedule(patient, doctor);
+        this.control.db.addNewScheduling(scheduling);
+        console.log("✅ Agendamento realizado com sucesso!");
     }
 }
 exports.default = SchedulingRegister;
