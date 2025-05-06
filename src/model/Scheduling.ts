@@ -7,6 +7,7 @@ export default class Scheduling {
     private date!: Date;
 
 
+    //injeção de dependência
     public doSchedule(patient: Patient, doctor: Doctor, date: Date) {
         this.patient = patient;
         this.doctor = doctor;

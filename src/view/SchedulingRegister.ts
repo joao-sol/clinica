@@ -1,8 +1,7 @@
 import Scheduling from "../model/Scheduling";
 import PromptSync from "prompt-sync";
 import MainController from "../controller/MainController";
-import Patient from "../model/Patient";
-import Doctor from "../model/Doctor";
+import { DoctorStatus } from "../types/DoctorStatus";
 
 export default class SchedulingRegister {
 
@@ -31,17 +30,21 @@ export default class SchedulingRegister {
 
         const patient = this.control.db.patientDb.find(p => p.getId() === patientId);
         const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
+
+        if (doctor!.getStatus() === DoctorStatus.Busy) {
+            console.log("Médico ocupado, escolha outro!");
+            return;
+        }
         
         //this.control.db.scheduling.push(scheduling);
 
         scheduling.doSchedule(patient!, doctor!, schedulingDate);
+        //Atualiza status do médico para 1 == ocupado.
+        doctor!.setStatus(DoctorStatus.Busy);
 
         this.control.db.addNewScheduling(scheduling);
         console.log("✅ Agendamento realizado com sucesso!");
 
     }
-
-
-
 
 }

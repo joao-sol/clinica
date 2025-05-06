@@ -1,4 +1,5 @@
 import User from "./User"
+import { DoctorStatus } from "../types/DoctorStatus";
 
 export default class Doctor extends User {
 
@@ -6,13 +7,13 @@ export default class Doctor extends User {
     private static counter: number = 0;
     private specialty!: string;
     private id: string;
+    private status: DoctorStatus = DoctorStatus.Available;
 
     constructor() {
         super();
         Doctor.counter++;
         this.id = Doctor.gerarId();
     }
-
 
     //Fazer sobrecarga de método com classe User.ts
     private static gerarId(): string {
@@ -30,6 +31,19 @@ export default class Doctor extends User {
         return this.id;
     }
 
+    public getStatus(): DoctorStatus {
+        return this.status;
+    }
+
+    public setStatus(status: DoctorStatus): void {
+        this.status = status;
+    }
+
+    //Inicializa o médico com status 0 == Available.
+    public isAvailable(): boolean {
+        return this.status === DoctorStatus.Available;
+    }
+
     //sobrescrita de método
     public override getProfileInfo(): string {
         return `
@@ -39,5 +53,6 @@ export default class Doctor extends User {
         CPF: ${this.cpf}
         Especialidade: ${this.specialty}`
     }
+
 }
 

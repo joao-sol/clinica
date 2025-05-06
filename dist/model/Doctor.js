@@ -4,9 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = __importDefault(require("./User"));
+const DoctorStatus_1 = require("../types/DoctorStatus");
 class Doctor extends User_1.default {
     constructor() {
         super();
+        this.status = DoctorStatus_1.DoctorStatus.Available;
         Doctor.counter++;
         this.id = Doctor.gerarId();
     }
@@ -22,6 +24,15 @@ class Doctor extends User_1.default {
     }
     getId() {
         return this.id;
+    }
+    getStatus() {
+        return this.status;
+    }
+    setStatus(status) {
+        this.status = status;
+    }
+    isAvailable() {
+        return this.status === DoctorStatus_1.DoctorStatus.Available;
     }
     //sobrescrita de método
     getProfileInfo() {

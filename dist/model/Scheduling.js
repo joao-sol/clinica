@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Scheduling {
+    //injeção de dependência
     doSchedule(patient, doctor, date) {
         this.patient = patient;
         this.doctor = doctor;
