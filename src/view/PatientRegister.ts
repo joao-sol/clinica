@@ -52,4 +52,28 @@ export default class PatientRegister {
           console.log("-------------------------");
         });
       }
+    
+    public togglePatientActivation(): void {
+        const patientId = this.prompt("\nDigite a ID do paciente: ");
+        const patient = this.control.db.patientDb.find(d => d.getId() === patientId);
+
+        if (!patient) {
+            console.log("Paciente não encontrado.");
+            return;
+        }
+
+        if (patient.isActive()) {
+            const confirm = this.prompt("Paciente está ATIVO. Deseja inativá-lo? (s/n): ");
+            if (confirm.toLowerCase() === "s") {
+                patient.setInactive();
+                console.log("Paciente inativado com sucesso.");
+            }
+        } else {
+            const confirm = this.prompt("Paciente está INATIVO. Deseja ativá-lo? (s/n): ");
+            if (confirm.toLowerCase() === "s") {
+                patient.setActive();
+                console.log("Paciente ativado com sucesso.");
+            }
+        }
+    } 
 }

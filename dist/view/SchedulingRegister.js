@@ -26,7 +26,7 @@ class SchedulingRegister {
         const patient = this.control.db.patientDb.find(p => p.getId() === patientId);
         const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
         if (doctor.getStatus() === DoctorStatus_1.DoctorStatus.Busy) {
-            console.log("❌ Médico ocupado. Escolha outro.");
+            console.log("Médico ocupado, escolha outro!");
             return;
         }
         //this.control.db.scheduling.push(scheduling);

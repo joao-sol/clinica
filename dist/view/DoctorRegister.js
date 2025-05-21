@@ -37,5 +37,27 @@ class DoctorRegister {
             console.log("-------------------------");
         });
     }
+    toggleDoctorActivation() {
+        const doctorId = this.prompt("\nDigite a ID do médico: ");
+        const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
+        if (!doctor) {
+            console.log("Médico não encontrado.");
+            return;
+        }
+        if (doctor.isActive()) {
+            const confirm = this.prompt("Médico está ATIVO. Deseja inativá-lo? (s/n): ");
+            if (confirm.toLowerCase() === "s") {
+                doctor.setInactive();
+                console.log("Médico inativado com sucesso.");
+            }
+        }
+        else {
+            const confirm = this.prompt("Médico está INATIVO. Deseja ativá-lo? (s/n): ");
+            if (confirm.toLowerCase() === "s") {
+                doctor.setActive();
+                console.log("Médico ativado com sucesso.");
+            }
+        }
+    }
 }
 exports.default = DoctorRegister;

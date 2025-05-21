@@ -20,7 +20,7 @@ class MainScreen {
     mainMenu() {
         let continues = true;
         while (continues) {
-            let choice = parseInt(this.prompt("Escolha:\n 1. Cadastrar Paciente\n 2. Cadastrar Médico\n 3. Cadastrar Agendamento\n 4. Listar pacientes\n 5. Listar médicos\n 6. Listar agendamentos\n 7. Sair\n"));
+            let choice = parseInt(this.prompt("Escolha:\n 1. Cadastrar Paciente\n 2. Cadastrar Médico\n 3. Cadastrar Agendamento\n 4. Listar pacientes\n 5. Listar médicos\n 6. Listar agendamentos\n 7. Inativar Médico\n 8. Inativar Paciente\n 9. Sair\n"));
             switch (choice) {
                 case 1:
                     this.patientRegister.addPatient();
@@ -41,6 +41,10 @@ class MainScreen {
                     console.log(this.database.listAllSchedulings());
                     break;
                 case 7:
+                    this.doctorRegister.toggleDoctorActivation();
+                case 8:
+                    this.patientRegister.togglePatientActivation();
+                case 9:
                     continues = false;
             }
         }

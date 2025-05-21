@@ -1,4 +1,5 @@
 import User from "./User";
+import Activatable from "../interfaces/Activatable";
 
 export default class Patient extends User {
 
@@ -6,6 +7,7 @@ export default class Patient extends User {
     private bloodType!: string;
     private agreement!: string;
     private id: any;
+    private active: boolean = true;
 
     private static gerarId(type: 'string'): string;
     private static gerarId(type: 'number'): number;
@@ -50,11 +52,31 @@ export default class Patient extends User {
 
     //sobrescrita de método
     public override getProfileInfo(): string {
-        return `ID: ${this.id}\n 
-        Paciente: ${this.name}\n
+        return `
+        ID: ${this.id}\n
+        Tipo usuário: ${this.getType()}\n
+        Nome: ${this.name}\n
         Idade: ${this.age}\n
         CPF: ${this.cpf}\n
         Tipo sanguíneo: ${this.bloodType}\n
-        Convênio: ${this.agreement}\n`
+        Convênio: ${this.agreement}\n
+        Ativo: ${this.isActive()}`
+    }
+
+    //Método abstrato da classe abstrata User
+    public getType(): string {
+        return "Paciente";
+    }
+
+    public setActive(): void {
+        this.active = true;
+    }
+
+    public setInactive(): void {
+        this.active = false;
+    }
+
+    public isActive(): boolean {
+        return this.active;
     }
 }

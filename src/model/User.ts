@@ -1,4 +1,4 @@
-export default class User {
+export default abstract class User {
     
     protected name!: string;
     protected age!: number;
@@ -38,6 +38,9 @@ export default class User {
         Idade: ${this.age}\n
         CPF: ${this.cpf}\n`
     }
+
+    //Método abstrato tipo (Paciente/médico)
+    public abstract getType(): string;
 
 }
 

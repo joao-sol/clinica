@@ -1,4 +1,5 @@
 import User from "./User"
+import Activatable from "../interfaces/Activatable";
 import { DoctorStatus } from "../types/DoctorStatus";
 
 export default class Doctor extends User {
@@ -8,6 +9,7 @@ export default class Doctor extends User {
     private specialty!: string;
     private id: string;
     private status: DoctorStatus = DoctorStatus.Available;
+    private active: boolean = true;
 
     constructor() {
         super();
@@ -47,11 +49,31 @@ export default class Doctor extends User {
     //sobrescrita de método
     public override getProfileInfo(): string {
         return `
-        ID: ${this.id}
-        Paciente: ${this.name}
-        Idade: ${this.age}
-        CPF: ${this.cpf}
-        Especialidade: ${this.specialty}`
+        ID: ${this.id}\n
+        Tipo: ${this.getType()}\n
+        Nome: ${this.name}\n
+        Idade: ${this.age}\n
+        CPF: ${this.cpf}\n
+        Especialidade: ${this.specialty}\n
+        Ativo: ${this.isActive()}`
+    }
+
+    //Método abstrato da classe abstrata User
+    public getType(): string {
+        return "Médico";
+    }
+
+    //Métodos de interface
+    public setActive(): void {
+        this.active = true;
+    }
+
+    public setInactive(): void {
+        this.active = false;
+    }
+
+    public isActive(): boolean {
+        return this.active;
     }
 
 }

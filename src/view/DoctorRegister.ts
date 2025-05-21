@@ -2,6 +2,7 @@ import PromptSync from "prompt-sync";
 import Database from "../db/Database";
 import MainController from "../controller/MainController";
 import Doctor from "../model/Doctor";
+import Activatable from "../interfaces/Activatable";
 
 export default class DoctorRegister {
 
@@ -47,6 +48,30 @@ export default class DoctorRegister {
           console.log(doc.getProfileInfo());
           console.log("-------------------------");
         });
-      }
+    }
+
+    public toggleDoctorActivation(): void {
+        const doctorId = this.prompt("\nDigite a ID do médico: ");
+        const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
+
+        if (!doctor) {
+            console.log("Médico não encontrado.");
+            return;
+        }
+
+        if (doctor.isActive()) {
+            const confirm = this.prompt("Médico está ATIVO. Deseja inativá-lo? (s/n): ");
+            if (confirm.toLowerCase() === "s") {
+                doctor.setInactive();
+                console.log("Médico inativado com sucesso.");
+            }
+        } else {
+            const confirm = this.prompt("Médico está INATIVO. Deseja ativá-lo? (s/n): ");
+            if (confirm.toLowerCase() === "s") {
+                doctor.setActive();
+                console.log("Médico ativado com sucesso.");
+            }
+        }
+    } 
 
 }
