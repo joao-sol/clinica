@@ -2,6 +2,7 @@ import Scheduling from "../model/Scheduling";
 import PromptSync from "prompt-sync";
 import MainController from "../controller/MainController";
 import { DoctorStatus } from "../types/DoctorStatus";
+import MyError from "../interfaces/MyError";
 
 export default class SchedulingRegister {
 
@@ -29,7 +30,7 @@ export default class SchedulingRegister {
             //Mês em Typescript começa em 0 (zero-based)
             const [day, month, year] = dateInput.split("/").map(Number);
             if (!day || !month || !year) {
-                throw new Error("Data inválida. Use o formato DD/MM/AAAA.")
+                throw new MyError("Data inválida. Use o formato DD/MM/AAAA.")
             }
 
             const schedulingDate = new Date(year, month - 1, day);
@@ -38,11 +39,11 @@ export default class SchedulingRegister {
             const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
 
             if (!patient) {
-                throw new Error("Paciente não encontrado!");
+                throw new MyError("Paciente não encontrado!");
             }
 
             if (!doctor) {
-                throw new Error("Médico não encontrado!")
+                throw new MyError("Médico não encontrado!")
             }
 
             if (doctor!.getStatus() === DoctorStatus.Busy) {

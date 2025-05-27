@@ -5,12 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
 const DoctorStatus_1 = require("../types/DoctorStatus");
+const MyError_1 = __importDefault(require("../interfaces/MyError"));
 class SchedulingRegister {
     constructor(control) {
         this.prompt = (0, prompt_sync_1.default)();
         this.control = control;
     }
     addScheduling() {
+        //Try-catch
         try {
             let scheduling = this.control.getNewScheduling();
             //buscar em db tanto paciente quanto médico que não são strings, mas doctor e patient
@@ -24,16 +26,16 @@ class SchedulingRegister {
             //Mês em Typescript começa em 0 (zero-based)
             const [day, month, year] = dateInput.split("/").map(Number);
             if (!day || !month || !year) {
-                throw new Error("Data inválida. Use o formato DD/MM/AAAA.");
+                throw new MyError_1.default("Data inválida. Use o formato DD/MM/AAAA.");
             }
             const schedulingDate = new Date(year, month - 1, day);
             const patient = this.control.db.patientDb.find(p => p.getId() === patientId);
             const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
             if (!patient) {
-                throw new Error("Paciente não encontrado!");
+                throw new MyError_1.default("Paciente não encontrado!");
             }
             if (!doctor) {
-                throw new Error("Médico não encontrado!");
+                throw new MyError_1.default("Médico não encontrado!");
             }
             if (doctor.getStatus() === DoctorStatus_1.DoctorStatus.Busy) {
                 console.log("Médico ocupado, escolha outro!");
