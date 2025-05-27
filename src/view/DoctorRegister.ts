@@ -2,7 +2,7 @@ import PromptSync from "prompt-sync";
 import Database from "../db/Database";
 import MainController from "../controller/MainController";
 import Doctor from "../model/Doctor";
-import Activatable from "../interfaces/Activatable";
+import Activatable from "../interfaces/Activable";
 
 export default class DoctorRegister {
 

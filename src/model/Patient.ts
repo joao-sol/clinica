@@ -1,5 +1,5 @@
 import User from "./User";
-import Activatable from "../interfaces/Activatable";
+import Activatable from "../interfaces/Activable";
 
 export default class Patient extends User {
 

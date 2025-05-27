@@ -1,5 +1,5 @@
 import User from "./User"
-import Activatable from "../interfaces/Activatable";
+import Activatable from "../interfaces/Activable";
 import { DoctorStatus } from "../types/DoctorStatus";
 
 export default class Doctor extends User {

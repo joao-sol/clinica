@@ -13,38 +13,54 @@ export default class SchedulingRegister {
     }
 
     public addScheduling() {
-        let scheduling: Scheduling = this.control.getNewScheduling();
+        //Try-catch
+        try{
+            let scheduling: Scheduling = this.control.getNewScheduling();
 
-        //buscar em db tanto paciente quanto médico que não são strings, mas doctor e patient
-        //precisa passar os objetos
-        let patientId: string = this.prompt("\nDigite a id do paciente\n");
-        let doctorId: string = this.prompt("\nDigite a id do médico\n");
-        //Recebe data como string
-        let dateInput: string = this.prompt("\nDigite a data do agendamento (formato: DD/MM/AAAA)\n");
+            //buscar em db tanto paciente quanto médico que não são strings, mas doctor e patient
+            //precisa passar os objetos
+            let patientId: string = this.prompt("\nDigite a id do paciente\n");
+            let doctorId: string = this.prompt("\nDigite a id do médico\n");
+            //Recebe data como string
+            let dateInput: string = this.prompt("\nDigite a data do agendamento (formato: DD/MM/AAAA)\n");
+    
+            //Converte a string de data para tipo date
+            //Split divide a string em partes, map converte para números e new date cria a data a partir das saídas disso
+            //Mês em Typescript começa em 0 (zero-based)
+            const [day, month, year] = dateInput.split("/").map(Number);
+            if (!day || !month || !year) {
+                throw new Error("Data inválida. Use o formato DD/MM/AAAA.")
+            }
 
-        //Converte a string de data para tipo date
-        //Split divide a string em partes, map converte para números e new date cria a data a partir das saídas disso
-        //Mês em Typescript começa em 0 (zero-based)
-        const [day, month, year] = dateInput.split("/").map(Number);
-        const schedulingDate = new Date(year, month - 1, day);
+            const schedulingDate = new Date(year, month - 1, day);
 
-        const patient = this.control.db.patientDb.find(p => p.getId() === patientId);
-        const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
+            const patient = this.control.db.patientDb.find(p => p.getId() === patientId);
+            const doctor = this.control.db.doctorDb.find(d => d.getId() === doctorId);
 
-        if (doctor!.getStatus() === DoctorStatus.Busy) {
-            console.log("Médico ocupado, escolha outro!");
-            return;
+            if (!patient) {
+                throw new Error("Paciente não encontrado!");
+            }
+
+            if (!doctor) {
+                throw new Error("Médico não encontrado!")
+            }
+
+            if (doctor!.getStatus() === DoctorStatus.Busy) {
+                console.log("Médico ocupado, escolha outro!");
+                return;
+            }
+            
+            //this.control.db.scheduling.push(scheduling);
+
+            scheduling.doSchedule(patient!, doctor!, schedulingDate);
+            //Atualiza status do médico para 1 == ocupado.
+            doctor!.setStatus(DoctorStatus.Busy);
+
+            this.control.db.addNewScheduling(scheduling);
+            console.log("✅ Agendamento realizado com sucesso!");
+        } 
+        catch (error: any) {
+            console.log("Erro ao agendar consulta: " +error.message)
         }
-        
-        //this.control.db.scheduling.push(scheduling);
-
-        scheduling.doSchedule(patient!, doctor!, schedulingDate);
-        //Atualiza status do médico para 1 == ocupado.
-        doctor!.setStatus(DoctorStatus.Busy);
-
-        this.control.db.addNewScheduling(scheduling);
-        console.log("✅ Agendamento realizado com sucesso!");
-
     }
-
 }

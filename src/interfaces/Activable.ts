@@ -1,4 +1,4 @@
-export default interface Activatable {
+export default interface Activable {
     setActive(): void;
     setInactive(): void;
     isActive(): boolean;
